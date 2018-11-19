@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import { Grid } from '@material-ui/core';
 import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
@@ -13,24 +13,24 @@ const styles = (theme: Theme) =>
 		toolbar: theme.mixins.toolbar
 	});
 
-type Props = WithStyles<typeof styles>;
+type Props = WithStyles<typeof styles> & {
+	children?: React.ReactNode;
+};
 
-class Layout extends Component<Props> {
-	render() {
-		const { classes } = this.props;
+const Layout = (props: Props) => {
+	const { classes, children } = props;
 
-		return (
-			<>
-				<Header />
-				<Grid container>
-					<Grid item xs={12} sm={9} className={classes.container}>
-						<div className={classes.toolbar} />
-						{this.props.children}
-					</Grid>
+	return (
+		<>
+			<Header />
+			<Grid container>
+				<Grid item xs={12} sm={9} className={classes.container}>
+					<div className={classes.toolbar} />
+					{children}
 				</Grid>
-			</>
-		);
-	}
-}
+			</Grid>
+		</>
+	);
+};
 
 export default withStyles(styles, { withTheme: true })(Layout);

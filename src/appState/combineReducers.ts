@@ -1,11 +1,3 @@
-// interface Action {
-// 	(...args: any[]): any;
-// }
-
-// interface Reducer extends Function {
-// 	<S extends Object, A extends Object>(state: S, action: A): S;
-// }
-
 interface Reducer extends Function {
 	(state: any, action: any): any;
 }

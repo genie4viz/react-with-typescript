@@ -10,7 +10,10 @@ const NotFound = memo((props: Props) => {
 		<>
 			<Helmet>
 				<title>404 Not found - React with Typescript and Webpack</title>
-				<meta name="description" content="404 Not found - React with Typescript and Webpack" />
+				<meta
+					name='description'
+					content='404 Not found - React with Typescript and Webpack'
+				/>
 			</Helmet>
 			<h1>404 Not found</h1>
 			<h2>

@@ -9,25 +9,23 @@ interface ActionCreator {
 	[key: string]: Action;
 }
 
-const useAppState = <S extends Object, SS extends Object, A extends ActionCreator>(
-	getStateFn: (appState: S) => SS,
-	actionCreators: A
-): [SS, A] => {
-	const [state, dispatch] = <[S, React.Dispatch<any>]>useContext(AppContext);
+const useAppState = <AppState extends Object, State extends Object, Actions extends ActionCreator>(
+	getStateFn: (appState: AppState) => State,
+	actions: Actions
+): [State, Actions] => {
+	const [state, dispatch] = useContext(AppContext);
 	const stateObj = getStateFn(state);
-	const actionObj = {} as A;
-	const actionCreatorKeys = Object.keys(actionCreators);
+	const actionsObj = {} as Actions;
+	const actionKeys = Object.keys(actions);
 
-	for (let i = 0; i < actionCreatorKeys.length; i++) {
-		const key = actionCreatorKeys[i];
-		const actionCreator = actionCreators[key];
+	for (let i = 0; i < actionKeys.length; i++) {
+		const key = actionKeys[i];
+		const action = actions[key];
 
-		if (typeof actionCreator === 'function') {
-			actionObj[key] = (...args: any[]) => dispatch(actionCreator(...args));
-		}
+		actionsObj[key] = (...args: any[]) => dispatch(action(...args));
 	}
 
-	return [stateObj, actionObj];
+	return [stateObj, actionsObj];
 };
 
 export default useAppState;

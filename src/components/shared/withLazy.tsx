@@ -1,16 +1,20 @@
-import React, { ComponentType, StatelessComponent, lazy } from 'react';
+import React, { ComponentType, lazy } from 'react';
 import ErrorBoundary from './ErrorBoundary';
 
-const withLazy = (
-	importFn: () => Promise<{ default: ComponentType<any> }>
-): StatelessComponent => props => {
-	const Component = lazy(importFn);
+const withLazy = <P extends Object, T extends ComponentType<any>>(
+	factory: () => Promise<{ default: T }>
+) => {
+	const WithLazy = (props: P) => {
+		const Component = lazy(factory);
 
-	return (
-		<ErrorBoundary>
-			<Component {...props} />
-		</ErrorBoundary>
-	);
+		return (
+			<ErrorBoundary>
+				<Component {...props} />
+			</ErrorBoundary>
+		);
+	};
+
+	return WithLazy;
 };
 
 export default withLazy;

@@ -1,10 +1,10 @@
-// @ts-ignore
+import 'static/style.scss';
 
 import React from 'react';
 import { render } from 'react-dom';
 
 import AppProvider from 'appState/AppProvider';
-import { rootReducer } from './store';
+import { rootReducer } from './services';
 import App from './App';
 
 import { CssBaseline } from '@material-ui/core';

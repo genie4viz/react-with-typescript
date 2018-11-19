@@ -2,20 +2,20 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { Button, Typography } from '@material-ui/core';
 import useAppState from 'appState/useAppState';
-import { ApplicationState } from '../store';
-import { actionCreators } from 'store/Counter';
+import { AppState } from '../services';
+import { actionCreators } from 'services/CounterService';
 
 const Counter = () => {
 	const [state, actions] = useAppState(
-		(state: ApplicationState) => state.counter,
+		(state: AppState) => state.counter,
 		actionCreators
 	);
 
 	return (
 		<>
 			<Helmet>
-				<title>CounterX - React with Typescript and Webpack</title>
-				<meta name='description' content='CounterX - React with Typescript and Webpack' />
+				<title>Counter - React with Typescript and Webpack</title>
+				<meta name='description' content='Counter - React with Typescript and Webpack' />
 			</Helmet>
 			<Typography variant='h1'>Counter Pages</Typography>
 			<Typography variant='h3'>
