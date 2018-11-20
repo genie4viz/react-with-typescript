@@ -1,5 +1,5 @@
-import React, { Component, ErrorInfo } from 'react';
-import { Button } from '@material-ui/core';
+import React, { Component, ErrorInfo } from "react";
+import { Button } from "@material-ui/core";
 
 interface IError {
 	readonly error?: Error;
@@ -42,8 +42,8 @@ class ErrorBoundary extends Component {
 
 		if (errorInfo) {
 			const errorDetails =
-				!process.env.NODE_ENV || process.env.NODE_ENV === 'development' ? (
-					<details style={{ whiteSpace: 'pre-wrap' }}>
+				!process.env.NODE_ENV || process.env.NODE_ENV === "development" ? (
+					<details style={{ whiteSpace: "pre-wrap" }}>
 						{error && error.toString()}
 						<br />
 						{errorInfo.componentStack}
@@ -56,7 +56,7 @@ class ErrorBoundary extends Component {
 				<>
 					<h2>Oops!!! Something went wrong.</h2>
 					{errorDetails}
-					<Button variant='outlined' color='primary' onClick={this.handleRetry}>
+					<Button variant="outlined" color="primary" onClick={this.handleRetry}>
 						Retry
 					</Button>
 				</>

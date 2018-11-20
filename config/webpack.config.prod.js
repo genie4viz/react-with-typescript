@@ -1,27 +1,27 @@
-const path = require('path');
-const webpack = require('webpack');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const CompressionPlugin = require('compression-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const SafeParser = require('postcss-safe-parser');
-const TerserPlugin = require('terser-webpack-plugin');
-const WorkboxPlugin = require('workbox-webpack-plugin');
-const paths = require('./paths');
+const path = require("path");
+const webpack = require("webpack");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
+const CompressionPlugin = require("compression-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const SafeParser = require("postcss-safe-parser");
+const TerserPlugin = require("terser-webpack-plugin");
+const WorkboxPlugin = require("workbox-webpack-plugin");
+const paths = require("./paths");
 
 module.exports = {
-	mode: 'production',
+	mode: "production",
 	entry: {
-		main: path.join(paths.src, 'main.tsx')
+		main: path.join(paths.src, "main.tsx")
 	},
 	output: {
 		path: paths.dist,
-		filename: 'static/js/[name].[chunkhash:8].js',
+		filename: "static/js/[name].[chunkhash:8].js",
 		// chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
 		publicPath: paths.public,
 		devtoolModuleFilenameTemplate: info =>
-			path.relative(paths.src, info.absoluteResourcePath).replace(/\\/g, '/')
+			path.relative(paths.src, info.absoluteResourcePath).replace(/\\/g, "/")
 	},
 	module: {
 		rules: [
@@ -32,40 +32,36 @@ module.exports = {
 						include: /src/,
 						exclude: /node_modules/,
 						use: {
-							loader: 'babel-loader',
+							loader: "babel-loader",
 							options: {
 								babelrc: false,
-								presets: [
-									'@babel/preset-env',
-									'@babel/typescript',
-									'@babel/preset-react'
-								],
+								presets: ["@babel/preset-env", "@babel/typescript", "@babel/preset-react"],
 								plugins: [
-									'@babel/plugin-syntax-dynamic-import',
-									'@babel/plugin-proposal-class-properties',
-									'@babel/plugin-proposal-object-rest-spread',
+									"@babel/plugin-syntax-dynamic-import",
+									"@babel/plugin-proposal-class-properties",
+									"@babel/plugin-proposal-object-rest-spread",
 									[
-										'transform-imports',
+										"transform-imports",
 										{
-											'@material-ui/core': {
+											"@material-ui/core": {
 												transform: function(importName) {
 													return `@material-ui/core/${importName}`;
 												},
 												preventFullImport: true
 											},
-											'@material-ui/lab': {
+											"@material-ui/lab": {
 												transform: function(importName) {
 													return `@material-ui/lab/${importName}`;
 												},
 												preventFullImport: true
 											},
-											'@material-ui/styles': {
+											"@material-ui/styles": {
 												transform: function(importName) {
 													return `@material-ui/styles/${importName}`;
 												},
 												preventFullImport: true
 											},
-											'@material-ui/icons': {
+											"@material-ui/icons": {
 												transform: function(importName) {
 													return `@material-ui/icons/${importName}`;
 												},
@@ -87,7 +83,7 @@ module.exports = {
 						use: [
 							MiniCssExtractPlugin.loader,
 							{
-								loader: 'css-loader',
+								loader: "css-loader",
 								options: {
 									importLoaders: 1,
 									minimize: true,
@@ -95,14 +91,14 @@ module.exports = {
 								}
 							},
 							{
-								loader: 'postcss-loader',
+								loader: "postcss-loader",
 								options: {
-									ident: 'postcss',
+									ident: "postcss",
 									plugins: () => [
-										require('postcss-flexbugs-fixes'),
-										require('postcss-preset-env')({
+										require("postcss-flexbugs-fixes"),
+										require("postcss-preset-env")({
 											autoprefixer: {
-												flexbox: 'no-2009'
+												flexbox: "no-2009"
 											},
 											stage: 3
 										})
@@ -111,7 +107,7 @@ module.exports = {
 								}
 							},
 							{
-								loader: 'sass-loader',
+								loader: "sass-loader",
 								options: {
 									sourceMap: true
 								}
@@ -120,17 +116,17 @@ module.exports = {
 					},
 					{
 						test: [/\.(bmp|gif|jpe?g|png|svg)$/, /\.(woff|woff2|eot|ttf)(\?|$)/],
-						loader: 'url-loader',
+						loader: "url-loader",
 						options: {
 							limit: 10000,
-							name: 'static/media/[name].[hash:8].[ext]'
+							name: "static/media/[name].[hash:8].[ext]"
 						}
 					},
 					{
 						exclude: [/\.(js|mjs|jsx|ts|tsx|html|json)$/],
-						loader: 'file-loader',
+						loader: "file-loader",
 						options: {
-							name: 'static/media/[name].[hash:8].[ext]'
+							name: "static/media/[name].[hash:8].[ext]"
 						}
 					}
 					// ** STOP ** Are you adding a new loader?
@@ -140,17 +136,17 @@ module.exports = {
 		]
 	},
 	resolve: {
-		modules: ['node_modules', paths.src],
-		extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+		modules: ["node_modules", paths.src],
+		extensions: [".js", ".jsx", ".ts", ".tsx", ".json"],
 		alias: {
-			appState: path.resolve(paths.src, 'appState'),
-			configs: path.resolve(paths.src, 'configs'),
-			core: path.resolve(paths.src, 'core'),
-			api: path.resolve(paths.src, 'api'),
-			services: path.resolve(paths.src, 'services'),
-			components: path.resolve(paths.src, 'components'),
-			pages: path.resolve(paths.src, 'pages'),
-			static: path.resolve(paths.root, 'static')
+			appState: path.resolve(paths.src, "appState"),
+			configs: path.resolve(paths.src, "configs"),
+			core: path.resolve(paths.src, "core"),
+			api: path.resolve(paths.src, "api"),
+			services: path.resolve(paths.src, "services"),
+			components: path.resolve(paths.src, "components"),
+			pages: path.resolve(paths.src, "pages"),
+			static: path.resolve(paths.root, "static")
 		}
 	},
 	optimization: {
@@ -189,20 +185,20 @@ module.exports = {
 				}
 			})
 		],
-		runtimeChunk: 'single',
+		runtimeChunk: "single",
 		splitChunks: {
 			cacheGroups: {
 				// vendor chunk
 				vendor: {
 					test: /[\\\/]node_modules[\\\/]/,
-					name: 'vendor',
-					chunks: 'all'
+					name: "vendor",
+					chunks: "all"
 				},
 				// common chunk
 				common: {
-					name: 'common',
+					name: "common",
 					minChunks: 20,
-					chunks: 'all',
+					chunks: "all",
 					priority: 10,
 					reuseExistingChunk: true,
 					enforce: true
@@ -219,9 +215,9 @@ module.exports = {
 		}),
 		new HtmlWebpackPlugin({
 			inject: true,
-			template: './static/index.html',
+			template: "./static/index.html",
 			baseUrl: paths.public,
-			favicon: './static/favicon.ico',
+			favicon: "./static/favicon.ico",
 			minify: {
 				removeComments: true,
 				collapseWhitespace: true,
@@ -236,16 +232,16 @@ module.exports = {
 			}
 		}),
 		new webpack.DefinePlugin({
-			'process.env.NODE_ENV': '"production"'
+			"process.env.NODE_ENV": '"production"'
 		}),
 		new MiniCssExtractPlugin({
-			filename: 'static/css/[name].[contenthash:8].css'
+			filename: "static/css/[name].[contenthash:8].css"
 			// chunkFilename: 'static/css/[name].[contenthash:8].chunk.css'
 		}),
 		new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
 		new CompressionPlugin({
-			filename: '[path].gz[query]',
-			algorithm: 'gzip',
+			filename: "[path].gz[query]",
+			algorithm: "gzip",
 			test: /\.(js|css|html)$/,
 			threshold: 10240,
 			minRatio: 0.8
@@ -253,27 +249,27 @@ module.exports = {
 		new WorkboxPlugin.GenerateSW({
 			clientsClaim: true,
 			exclude: [/\.map$/, /\.gz$/],
-			importWorkboxFrom: 'cdn',
-			navigateFallback: paths.public + '/200.html',
+			importWorkboxFrom: "cdn",
+			navigateFallback: paths.public + "/index.html",
 			navigateFallbackBlacklist: [
 				// Exclude URLs starting with /_, as they're likely an API call
-				new RegExp('^/_'),
+				new RegExp("^/_"),
 				// Exclude URLs containing a dot, as they're likely a resource in
 				// public/ and not a SPA route
-				new RegExp('/[^/]+\\.[^/]+$')
+				new RegExp("/[^/]+\\.[^/]+$")
 			],
-			swDest: 'service-worker.js',
+			swDest: "service-worker.js",
 			skipWaiting: true,
-			precacheManifestFilename: 'precache-manifest.[manifestHash].js'
+			precacheManifestFilename: "precache-manifest.[manifestHash].js"
 		})
 	],
-	devtool: 'source-map',
+	devtool: "source-map",
 	node: {
-		dgram: 'empty',
-		fs: 'empty',
-		net: 'empty',
-		tls: 'empty',
-		child_process: 'empty'
+		dgram: "empty",
+		fs: "empty",
+		net: "empty",
+		tls: "empty",
+		child_process: "empty"
 	},
 	performance: false,
 	stats: {

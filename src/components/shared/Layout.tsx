@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
 
-import { Grid } from '@material-ui/core';
-import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import { Grid } from "@material-ui/core";
+import { createStyles, Theme, WithStyles, withStyles } from "@material-ui/core/styles";
 
-import Header from './Header';
+import Header from "./Header";
 
 const styles = (theme: Theme) =>
 	createStyles({
 		container: {
-			margin: '0 auto'
+			margin: "0 auto"
 		},
 		toolbar: theme.mixins.toolbar
 	});

@@ -1,16 +1,16 @@
 //#region Action
 
 enum ActionType {
-	INCREMENT = 'COUNTER__INCREMENT',
-	DECREMENT = 'COUNTER__DECREMENT'
+	Increment = "COUNTER__INCREMENT",
+	Decrement = "COUNTER__DECREMENT"
 }
 
 interface IncrementAction {
-	type: ActionType.INCREMENT;
+	type: ActionType.Increment;
 }
 
 interface DecrementAction {
-	type: ActionType.DECREMENT;
+	type: ActionType.Decrement;
 }
 
 //#endregion
@@ -18,19 +18,19 @@ interface DecrementAction {
 //#region  Action Creators
 
 export const actionCreators = {
-	increment: () => <IncrementAction>{ type: ActionType.INCREMENT },
-	decrement: () => <DecrementAction>{ type: ActionType.DECREMENT }
+	increment: () => <IncrementAction>{ type: ActionType.Increment },
+	decrement: () => <DecrementAction>{ type: ActionType.Decrement }
 };
 
 //#endregion
 
 //#region State
 
-export interface IState {
+export interface State {
 	count: number;
 }
 
-const initialState: IState = {
+const initialState: State = {
 	count: 0
 };
 
@@ -40,11 +40,11 @@ const initialState: IState = {
 
 type Action = IncrementAction | DecrementAction;
 
-export const reducer = (state: IState, action: Action) => {
+export const reducer = (state: State, action: Action) => {
 	switch (action.type) {
-		case ActionType.INCREMENT:
+		case ActionType.Increment:
 			return { count: state.count + 1 };
-		case ActionType.DECREMENT:
+		case ActionType.Decrement:
 			return { count: state.count - 1 };
 		default:
 			return state || initialState;

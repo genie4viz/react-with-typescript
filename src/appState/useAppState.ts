@@ -1,5 +1,5 @@
-import { useContext } from 'react';
-import AppContext from './AppContext';
+import { useContext } from "react";
+import AppContext from "./AppContext";
 
 interface Action {
 	(...args: any[]): any;
@@ -14,18 +14,17 @@ const useAppState = <AppState extends Object, State extends Object, Actions exte
 	actions: Actions
 ): [State, Actions] => {
 	const [state, dispatch] = useContext(AppContext);
-	const stateObj = getStateFn(state);
-	const actionsObj = {} as Actions;
+	const retState = getStateFn(state);
+	const retActions = {} as Actions;
 	const actionKeys = Object.keys(actions);
 
-	for (let i = 0; i < actionKeys.length; i++) {
-		const key = actionKeys[i];
+	actionKeys.forEach(key => {
 		const action = actions[key];
 
-		actionsObj[key] = (...args: any[]) => dispatch(action(...args));
-	}
+		retActions[key] = (...args: any[]) => dispatch(action(...args));
+	});
 
-	return [stateObj, actionsObj];
+	return [retState, retActions];
 };
 
 export default useAppState;
