@@ -1,7 +1,7 @@
 import React from "react";
 import Helmet from "react-helmet";
 import { Button, Typography } from "@material-ui/core";
-import useAppState from "appState/useAppState";
+import useAppState from "app-state/useAppState";
 import { AppState } from "../services";
 import { actionCreators } from "services/CounterService";
 

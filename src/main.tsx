@@ -3,8 +3,8 @@ import "static/style.scss";
 import React from "react";
 import { render } from "react-dom";
 
-import AppProvider from "appState/AppProvider";
-import { rootReducer } from "./services";
+import AppProvider from "app-state/AppProvider";
+import { appState } from "./services";
 import App from "./App";
 
 import { CssBaseline } from "@material-ui/core";
@@ -33,7 +33,7 @@ function renderApp() {
 	const rootElement = document.getElementById("root")!;
 
 	render(
-		<AppProvider reducer={rootReducer}>
+		<AppProvider value={appState}>
 			<MuiThemeProvider theme={theme}>
 				<CssBaseline />
 				<App />

@@ -139,7 +139,7 @@ module.exports = {
 		modules: ["node_modules", paths.src],
 		extensions: [".js", ".jsx", ".ts", ".tsx", ".json"],
 		alias: {
-			appState: path.resolve(paths.src, "appState"),
+			"app-state": path.resolve(paths.src, "app-state"),
 			configs: path.resolve(paths.src, "configs"),
 			core: path.resolve(paths.src, "core"),
 			api: path.resolve(paths.src, "api"),

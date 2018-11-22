@@ -6,7 +6,7 @@ interface Reducers {
 	[key: string]: Reducer;
 }
 
-const combineReducers = (reducers: Reducers): Reducer => {
+const createRootReducer = (reducers: Reducers): Reducer => {
 	const reducerKeys = Object.keys(reducers);
 	const fnReducers = {} as Reducers;
 
@@ -35,4 +35,4 @@ const combineReducers = (reducers: Reducers): Reducer => {
 	};
 };
 
-export default combineReducers;
+export default createRootReducer;
