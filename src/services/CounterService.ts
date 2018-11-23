@@ -1,8 +1,8 @@
 //#region Action
 
 enum ActionType {
-	Increment = "COUNTER__INCREMENT",
-	Decrement = "COUNTER__DECREMENT"
+	Increment = 'COUNTER__INCREMENT',
+	Decrement = 'COUNTER__DECREMENT'
 }
 
 interface IncrementAction {

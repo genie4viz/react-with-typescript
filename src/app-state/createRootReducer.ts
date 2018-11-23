@@ -11,7 +11,7 @@ const createRootReducer = (reducers: Reducers): Reducer => {
 	const fnReducers = {} as Reducers;
 
 	reducerKeys.forEach(key => {
-		if (typeof reducers[key] === "function") {
+		if (typeof reducers[key] === 'function') {
 			fnReducers[key] = reducers[key];
 		}
 	});

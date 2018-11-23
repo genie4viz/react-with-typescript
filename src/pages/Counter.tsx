@@ -1,9 +1,9 @@
-import React from "react";
-import Helmet from "react-helmet";
-import { Button, Typography } from "@material-ui/core";
-import useAppState from "app-state/useAppState";
-import { AppState } from "../services";
-import { actionCreators } from "services/CounterService";
+import React from 'react';
+import Helmet from 'react-helmet';
+import { Button, Typography } from '@material-ui/core';
+import useAppState from 'app-state/useAppState';
+import { AppState } from '../services';
+import { actionCreators } from 'services/CounterService';
 
 const Counter = () => {
 	const [state, actions] = useAppState((state: AppState) => state.counter, actionCreators);

@@ -5,7 +5,7 @@ type AppStateProps = {
 
 const createAppState = (props: AppStateProps) => {
 	const { initialState, reducer } = props;
-	const appState = reducer(undefined, { type: "__INITIALIZE_APP_STATE__" });
+	const appState = reducer(undefined, { type: '__INITIALIZE_APP_STATE__' });
 
 	if (initialState) {
 		Object.assign(appState, initialState);

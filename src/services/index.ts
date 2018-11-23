@@ -1,6 +1,6 @@
-import * as CounterService from "./CounterService";
-import createAppState from "app-state/createAppState";
-import createRootReducer from "app-state/createRootReducer";
+import * as CounterService from './CounterService';
+import createAppState from 'app-state/createAppState';
+import createRootReducer from 'app-state/createRootReducer';
 
 export interface AppState {
 	counter: CounterService.State;

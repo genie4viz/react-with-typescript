@@ -1,6 +1,6 @@
-import React from "react";
-import Button, { ButtonProps } from "@material-ui/core/Button";
-import { NavLink, NavLinkProps } from "react-router-dom";
+import React from 'react';
+import Button, { ButtonProps } from '@material-ui/core/Button';
+import { NavLink, NavLinkProps } from 'react-router-dom';
 
 type Props = ButtonProps & NavLinkProps;
 

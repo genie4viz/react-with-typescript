@@ -1,5 +1,5 @@
-import React, { memo } from "react";
-import Helmet from "react-helmet";
+import React, { memo } from 'react';
+import Helmet from 'react-helmet';
 
 type Props = {
 	location: Location;

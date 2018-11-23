@@ -1,17 +1,17 @@
-import "static/style.scss";
+import 'static/style.scss';
 
-import React from "react";
-import { render } from "react-dom";
+import React from 'react';
+import { render } from 'react-dom';
 
-import AppProvider from "app-state/AppProvider";
-import { appState } from "./services";
-import App from "./App";
+import AppProvider from 'app-state/AppProvider';
+import { appState } from './services';
+import App from './App';
 
-import { CssBaseline } from "@material-ui/core";
-import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
-import green from "@material-ui/core/colors/green";
+import { CssBaseline } from '@material-ui/core';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import green from '@material-ui/core/colors/green';
 
-import * as serviceWorker from "./serviceWorker";
+import * as serviceWorker from './serviceWorker';
 
 // Create a theme instance.
 const theme = createMuiTheme({
@@ -21,7 +21,7 @@ const theme = createMuiTheme({
 	typography: {
 		useNextVariants: true,
 		button: {
-			textTransform: "capitalize"
+			textTransform: 'capitalize'
 		}
 	},
 	shape: {
@@ -30,7 +30,7 @@ const theme = createMuiTheme({
 });
 
 function renderApp() {
-	const rootElement = document.getElementById("root")!;
+	const rootElement = document.getElementById('root')!;
 
 	render(
 		<AppProvider value={appState}>
@@ -48,5 +48,5 @@ renderApp();
 serviceWorker.unregister();
 
 if (module.hot) {
-	module.hot.accept("./App", renderApp);
+	module.hot.accept('./App', renderApp);
 }

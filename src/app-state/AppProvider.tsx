@@ -1,5 +1,5 @@
-import React, { useReducer } from "react";
-import AppContext from "./AppContext";
+import React, { useReducer } from 'react';
+import AppContext from './AppContext';
 
 type AppProviderProps = {
 	value: any;
