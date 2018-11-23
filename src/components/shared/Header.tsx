@@ -1,14 +1,14 @@
 import React from 'react';
 
 import { AppBar, Toolbar, Button, Grid, InputBase } from '@material-ui/core';
-import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles';
+import { createStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
-
 import SearchIcon from '@material-ui/icons/Search';
 
 import LinkButton from 'components/button/LinkButton';
 
-const styles = (theme: Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		grow: {
 			flexGrow: 1
@@ -72,7 +72,8 @@ const styles = (theme: Theme) =>
 				}
 			}
 		}
-	});
+	})
+);
 
 const Links = [
 	{
@@ -89,10 +90,8 @@ const Links = [
 	}
 ];
 
-type Props = WithStyles<typeof styles>;
-
-const Header = (props: Props) => {
-	const { classes } = props;
+const Header = () => {
+	const classes = useStyles({});
 
 	return (
 		<AppBar position="fixed">
@@ -139,4 +138,4 @@ const Header = (props: Props) => {
 	);
 };
 
-export default withStyles(styles, { withTheme: true })(Header);
+export default Header;
