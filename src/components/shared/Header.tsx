@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { AppBar, Toolbar, Button, Grid, InputBase } from '@material-ui/core';
-import { createStyles, Theme } from '@material-ui/core/styles';
-import { makeStyles } from '@material-ui/styles';
+import { Theme } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import SearchIcon from '@material-ui/icons/Search';
 

@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { Grid } from '@material-ui/core';
-import { createStyles, Theme } from '@material-ui/core/styles';
+import { Theme } from '@material-ui/core/styles';
 
 import Header from './Header';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles, createStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
