@@ -80,7 +80,7 @@ module.exports = {
 						use: ['style-loader', 'css-loader', 'sass-loader']
 					},
 					{
-						test: [/\.(bmp|gif|jpe?g|png|svg)$/, /\.(woff|woff2|eot|ttf)(\?|$)/],
+						test: /\.(bmp|gif|jpe?g|png|svg)$/,
 						loader: 'url-loader',
 						options: {
 							limit: 10000,
@@ -88,14 +88,12 @@ module.exports = {
 						}
 					},
 					{
-						exclude: [/\.(js|jsx|ts|tsx|html|json)$/],
+						exclude: /\.(js|jsx|ts|tsx|html|json)$/,
 						loader: 'file-loader',
 						options: {
 							name: 'static/media/[name].[hash:8].[ext]'
 						}
 					}
-					// ** STOP ** Are you adding a new loader?
-					// Make sure to add the new loader(s) before the 'file' loader.
 				]
 			}
 		]

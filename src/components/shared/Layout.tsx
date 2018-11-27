@@ -4,16 +4,14 @@ import { Grid } from '@material-ui/core';
 import { Theme } from '@material-ui/core/styles';
 
 import Header from './Header';
-import { makeStyles, createStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/styles';
 
-const useStyles = makeStyles((theme: Theme) =>
-	createStyles({
-		container: {
-			margin: '0 auto'
-		},
-		toolbar: theme.mixins.toolbar
-	})
-);
+const useStyles = makeStyles((theme: Theme) => ({
+	container: {
+		margin: '0 auto'
+	},
+	toolbar: theme.mixins.toolbar
+}));
 
 type Props = {
 	children?: React.ReactNode;
