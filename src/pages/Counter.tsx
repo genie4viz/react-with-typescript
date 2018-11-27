@@ -2,8 +2,8 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { Button, Typography } from '@material-ui/core';
 import useAppState from 'app-state/useAppState';
-import { AppState } from '../services';
-import { actionCreators } from 'services/CounterService';
+import AppState from '../store';
+import { actionCreators } from 'store/Counter';
 
 const Counter = () => {
 	const [state, actions] = useAppState((state: AppState) => state.counter, actionCreators);

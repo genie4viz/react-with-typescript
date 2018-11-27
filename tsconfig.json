@@ -41,7 +41,7 @@
 			"configs/*": ["src/configs/*"],
 			"core/*": ["src/core/*"],
 			"api/*": ["src/api/*"],
-			"services/*": ["src/services/*"],
+			"store/*": ["src/store/*"],
 			"components/*": ["src/components/*"],
 			"pages/*": ["src/pages/*"],
 			"static/*": ["static/*"]

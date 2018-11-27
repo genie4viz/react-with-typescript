@@ -4,7 +4,7 @@ import React from 'react';
 import { render } from 'react-dom';
 
 import AppProvider from 'app-state/AppProvider';
-import { appState } from './services';
+import { store } from './store';
 import App from './App';
 
 import { CssBaseline } from '@material-ui/core';
@@ -67,7 +67,7 @@ const theme = createMuiTheme({
 			secondary: '#2e3131',
 			disabled: '#dadfe1',
 			hint: '#abb7b7'
-		},
+		}
 	},
 	typography: {
 		fontFamily: '"Quicksand", sans-serif;',
@@ -92,7 +92,7 @@ function renderApp() {
 	const rootElement = document.getElementById('root')!;
 
 	render(
-		<AppProvider value={appState}>
+		<AppProvider value={store}>
 			<MuiThemeProvider theme={theme}>
 				<CssBaseline />
 				<App />

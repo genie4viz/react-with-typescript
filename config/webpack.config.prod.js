@@ -141,7 +141,7 @@ module.exports = {
 			configs: path.resolve(paths.src, 'configs'),
 			core: path.resolve(paths.src, 'core'),
 			api: path.resolve(paths.src, 'api'),
-			services: path.resolve(paths.src, 'services'),
+			store: path.resolve(paths.src, 'store'),
 			components: path.resolve(paths.src, 'components'),
 			pages: path.resolve(paths.src, 'pages'),
 			static: path.resolve(paths.root, 'static')
