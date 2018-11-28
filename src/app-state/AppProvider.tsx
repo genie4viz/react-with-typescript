@@ -1,4 +1,4 @@
-import React, { useReducer, useMemo } from 'react';
+import React, { useMemo, useReducer } from 'react';
 import AppContext from './AppContext';
 
 type AppProviderProps = {
@@ -13,11 +13,14 @@ const AppProvider = (props: AppProviderProps) => {
 	const { value, children } = props;
 	const { reducer } = value;
 
-	const state = useMemo(() => {
-		return value.initialState || reducer(undefined, { type: '__INITIALIZE_APP_STATE__' });
-	}, []);
+	const initialState = useMemo(
+		() => {
+			return reducer(value.initialState || undefined, { type: '__INITIALIZE_APP_STATE__' });
+		},
+		[value]
+	);
 
-	const [appState, dispatch] = useReducer(reducer, state);
+	const [appState, dispatch] = useReducer(reducer, initialState);
 
 	return <AppContext.Provider value={[appState, dispatch]}>{children}</AppContext.Provider>;
 };
