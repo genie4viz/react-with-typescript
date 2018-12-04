@@ -18,7 +18,7 @@ module.exports = {
 	output: {
 		path: paths.dist,
 		filename: 'static/js/[name].[chunkhash:8].js',
-		// chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
+		chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
 		publicPath: paths.public,
 		devtoolModuleFilenameTemplate: info =>
 			path.relative(paths.src, info.absoluteResourcePath).replace(/\\/g, '/')
@@ -137,14 +137,14 @@ module.exports = {
 		modules: ['node_modules', paths.src],
 		extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
 		alias: {
-			'app-state': path.resolve(paths.src, 'app-state'),
+			static: path.resolve(paths.root, 'static'),
 			configs: path.resolve(paths.src, 'configs'),
 			core: path.resolve(paths.src, 'core'),
+			utils: path.resolve(paths.src, 'utils'),
 			api: path.resolve(paths.src, 'api'),
 			store: path.resolve(paths.src, 'store'),
 			components: path.resolve(paths.src, 'components'),
-			pages: path.resolve(paths.src, 'pages'),
-			static: path.resolve(paths.root, 'static')
+			pages: path.resolve(paths.src, 'pages')
 		}
 	},
 	optimization: {
@@ -183,29 +183,26 @@ module.exports = {
 				}
 			})
 		],
-		runtimeChunk: 'single',
 		splitChunks: {
 			cacheGroups: {
-				// vendor chunk
 				vendor: {
 					test: /[\\\/]node_modules[\\\/]/,
 					name: 'vendor',
-					chunks: 'all'
+					chunks: 'all',
+					priority: 20
 				},
-				// common chunk
 				common: {
 					name: 'common',
-					minChunks: 20,
+					minChunks: 2,
 					chunks: 'all',
 					priority: 10,
 					reuseExistingChunk: true,
 					enforce: true
 				}
 			}
-		}
-		// runtimeChunk: {
-		// 	name: entrypoint => 'runtime.${entrypoint.name}.chunk'
-		// }
+		},
+		runtimeChunk: 'single',
+		namedChunks: true
 	},
 	plugins: [
 		new CleanWebpackPlugin(paths.dist, {
@@ -233,8 +230,8 @@ module.exports = {
 			'process.env.NODE_ENV': '"production"'
 		}),
 		new MiniCssExtractPlugin({
-			filename: 'static/css/[name].[contenthash:8].css'
-			// chunkFilename: 'static/css/[name].[contenthash:8].chunk.css'
+			filename: 'static/css/[name].[contenthash:8].css',
+			chunkFilename: 'static/css/[name].[contenthash:8].chunk.css'
 		}),
 		new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
 		new CompressionPlugin({
@@ -249,13 +246,7 @@ module.exports = {
 			exclude: [/\.map$/, /\.gz$/],
 			importWorkboxFrom: 'cdn',
 			navigateFallback: paths.public + '/index.html',
-			navigateFallbackBlacklist: [
-				// Exclude URLs starting with /_, as they're likely an API call
-				new RegExp('^/_'),
-				// Exclude URLs containing a dot, as they're likely a resource in
-				// public/ and not a SPA route
-				new RegExp('/[^/]+\\.[^/]+$')
-			],
+			navigateFallbackBlacklist: [new RegExp('^/_'), new RegExp('/[^/]+\\.[^/]+$')],
 			swDest: 'service-worker.js',
 			skipWaiting: true,
 			precacheManifestFilename: 'precache-manifest.[manifestHash].js'

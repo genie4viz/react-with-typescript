@@ -1,15 +1,15 @@
 import * as Counter from './Counter';
-import createRootReducer from 'app-state/createRootReducer';
+import createStore from 'utils/store/createStore';
 
 export default interface AppState {
 	counter: Counter.State;
 }
 
-const rootReducer = createRootReducer({
+const reducers = {
 	counter: Counter.reducer
-});
-
-export const store = {
-	initialState: undefined,
-	reducer: rootReducer
 };
+
+export const store = createStore<AppState>({
+	reducers: reducers,
+	initialState: undefined
+});

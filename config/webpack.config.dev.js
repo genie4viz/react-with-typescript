@@ -9,13 +9,12 @@ const paths = require('./paths');
 module.exports = {
 	mode: 'development',
 	entry: {
-		'babel-polyfill': '@babel/polyfill',
 		main: path.join(paths.src, 'main.tsx')
 	},
 	output: {
 		path: paths.dist,
 		filename: 'static/js/[name].js',
-		// chunkFilename: 'static/js/[name].chunk.js',
+		chunkFilename: 'static/js/[name].chunk.js',
 		publicPath: paths.public,
 		devtoolModuleFilenameTemplate: info =>
 			path.resolve(info.absoluteResourcePath).replace(/\\/g, '/')
@@ -103,40 +102,37 @@ module.exports = {
 		modules: ['node_modules', paths.src],
 		extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
 		alias: {
-			'app-state': path.resolve(paths.src, 'app-state'),
+			static: path.resolve(paths.root, 'static'),
 			configs: path.resolve(paths.src, 'configs'),
 			core: path.resolve(paths.src, 'core'),
+			utils: path.resolve(paths.src, 'utils'),
 			api: path.resolve(paths.src, 'api'),
 			store: path.resolve(paths.src, 'store'),
 			components: path.resolve(paths.src, 'components'),
-			pages: path.resolve(paths.src, 'pages'),
-			static: path.resolve(paths.root, 'static')
+			pages: path.resolve(paths.src, 'pages')
 		}
 	},
 	optimization: {
-		runtimeChunk: 'single',
 		splitChunks: {
 			cacheGroups: {
-				// vendor chunk
 				vendor: {
 					test: /[\\\/]node_modules[\\\/]/,
 					name: 'vendor',
-					chunks: 'all'
+					chunks: 'all',
+					priority: 20
 				},
-				// common chunk
 				common: {
 					name: 'common',
-					minChunks: 20,
+					minChunks: 2,
 					chunks: 'all',
 					priority: 10,
 					reuseExistingChunk: true,
 					enforce: true
 				}
 			}
-		}
-		// runtimeChunk: {
-		// 	name: entrypoint => `runtime.${entrypoint.name}.chunk`
-		// }
+		},
+		runtimeChunk: 'single',
+		namedChunks: true
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
@@ -149,8 +145,8 @@ module.exports = {
 			'process.env.NODE_ENV': '"development"'
 		}),
 		new MiniCssExtractPlugin({
-			filename: 'static/css/[name].css'
-			// chunkFilename: 'static/css/[name].chunk.css'
+			filename: 'static/css/[name].css',
+			chunkFilename: 'static/css/[name].chunk.css'
 		}),
 		new webpack.NamedModulesPlugin(),
 		new webpack.HotModuleReplacementPlugin(),

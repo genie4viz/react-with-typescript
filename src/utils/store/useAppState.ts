@@ -1,5 +1,5 @@
 import { useContext, useMemo } from 'react';
-import AppContext from './AppContext';
+import { RootContext, AppContext } from './AppContext';
 
 interface Action {
 	(...args: any[]): any;
@@ -9,11 +9,17 @@ interface ActionCreator {
 	[key: string]: Action;
 }
 
-const useAppState = <AppState extends Object, State extends Object, Actions extends ActionCreator>(
+const useAppState = <
+	AppState extends { [key: string]: any },
+	State extends Object,
+	Actions extends ActionCreator
+>(
 	selector: (appState: AppState) => State,
 	actionCreators: Actions
 ): [State, Actions] => {
-	const [appState, dispatch] = useContext(AppContext);
+	const [bits, dispatch] = useContext(RootContext);
+	const observedBits = Number(selector(bits));
+	const appState = useContext(AppContext, observedBits);
 	const state = selector(appState);
 
 	const actions = useMemo(

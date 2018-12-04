@@ -8,7 +8,7 @@ const Contact = memo(() => {
 				<title>Contact - React with Typescript and Webpack</title>
 				<meta name="description" content="Contact - React with Typescript and Webpack" />
 			</Helmet>
-			<h1>Contact Pages</h1>
+			<h1>Contact Page</h1>
 		</>
 	);
 });

@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { Suspense } from 'react';
+import { RouteConfig, renderRoutes } from 'react-router-config';
 
 import { Grid } from '@material-ui/core';
 import { Theme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 
 import Header from './Header';
-import { makeStyles } from '@material-ui/styles';
+import Loading from './Loading';
 
 const useStyles = makeStyles((theme: Theme) => ({
 	container: {
@@ -14,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 type Props = {
-	children?: React.ReactNode;
+	route?: RouteConfig;
 };
 
 const Layout = (props: Props) => {
@@ -26,7 +28,7 @@ const Layout = (props: Props) => {
 			<Grid container>
 				<Grid item xs={12} sm={9} className={classes.container}>
 					<div className={classes.toolbar} />
-					{props.children}
+					<Suspense fallback={<Loading />}>{renderRoutes(props.route!.routes)}</Suspense>
 				</Grid>
 			</Grid>
 		</>

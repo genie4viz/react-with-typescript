@@ -1,14 +1,13 @@
-import 'static/style.scss';
-
 import React from 'react';
 import { render } from 'react-dom';
 
-import AppProvider from 'app-state/AppProvider';
+import AppProvider from 'utils/store/AppProvider';
 import { store } from './store';
 import App from './App';
 
 import { CssBaseline } from '@material-ui/core';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import { StylesProvider, createGenerateClassName } from '@material-ui/styles';
 
 import * as serviceWorker from './serviceWorker';
 
@@ -17,33 +16,12 @@ const theme = createMuiTheme({
 	props: {
 		MuiButtonBase: {
 			disableRipple: true
+		},
+		MuiListItem: {
+			disableRipple: true
 		}
 	},
 	palette: {
-		// primary: {
-		// 	light: '#8BC34A',
-		// 	main: '#4CAF50',
-		// 	dark: '#009688',
-		// 	contrastText: '#fff'
-		// },
-		// secondary: {
-		// 	light: '#00BCD4',
-		// 	main: '#03A9F4',
-		// 	dark: '#2196F3',
-		// 	contrastText: '#fff'
-		// },
-		// error: {
-		// 	light: '#FF9800',
-		// 	main: '#FF5722',
-		// 	dark: '#F44336',
-		// 	contrastText: '#fff'
-		// },
-		// text: {
-		// 	primary: '#37474f',
-		// 	secondary: '#546e7a',
-		// 	disabled: '#78909C',
-		// 	hint: '#B0BEC5'
-		// },
 		primary: {
 			light: '#26c281',
 			main: '#3fc380',
@@ -88,15 +66,22 @@ const theme = createMuiTheme({
 	}
 });
 
+const generateClassName = createGenerateClassName({
+	dangerouslyUseGlobalCSS: true,
+	productionPrefix: 'rtw'
+});
+
 function renderApp() {
 	const rootElement = document.getElementById('root')!;
 
 	render(
 		<AppProvider value={store}>
-			<MuiThemeProvider theme={theme}>
-				<CssBaseline />
-				<App />
-			</MuiThemeProvider>
+			<StylesProvider generateClassName={generateClassName}>
+				<MuiThemeProvider theme={theme}>
+					<CssBaseline />
+					<App />
+				</MuiThemeProvider>
+			</StylesProvider>
 		</AppProvider>,
 		rootElement
 	);

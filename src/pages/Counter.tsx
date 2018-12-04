@@ -1,7 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { Button, Typography } from '@material-ui/core';
-import useAppState from 'app-state/useAppState';
+import useAppState from 'utils/store/useAppState';
 import AppState from '../store';
 import { actionCreators } from 'store/Counter';
 
@@ -14,7 +14,7 @@ const Counter = () => {
 				<title>Counter - React with Typescript and Webpack</title>
 				<meta name="description" content="Counter - React with Typescript and Webpack" />
 			</Helmet>
-			<Typography variant="h1">Counter Pages</Typography>
+			<Typography variant="h1">Counter Page</Typography>
 			<Typography variant="h3">
 				Current count: <strong>{state.count}</strong>
 			</Typography>
