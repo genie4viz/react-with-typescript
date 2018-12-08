@@ -63,7 +63,10 @@ const theme = createMuiTheme({
 				fontSize: 20
 			}
 		}
-	}
+	},
+	transitions: {
+    create: () => 'none',
+  },
 });
 
 const generateClassName = createGenerateClassName({
