@@ -9,7 +9,7 @@ const reducers = {
 	counter: Counter.reducer
 };
 
-export const store = createStore<AppState>({
+export const store = createStore({
 	reducers: reducers,
 	initialState: undefined
 });

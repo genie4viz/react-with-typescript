@@ -1,19 +1,17 @@
 import createRootReducer from './createRootReducer';
 
-type AppState = { [key: string]: any };
-
-const createStore = <State extends AppState>(props: {
+const createStore = <S extends { [key: string]: any }>(props: {
 	reducers: any;
-	initialState: undefined | State;
+	initialState?: S;
 }) => {
 	const { reducers, initialState } = props;
 
 	const reducer = createRootReducer(reducers);
-	const state: State = reducer(initialState || undefined, {
+	const state = reducer(initialState, {
 		type: '__INITIALIZE_APP_STATE__'
 	});
 
-	const bits: State = {} as any;
+	const bits = {} as S;
 
 	Object.keys(state).forEach((value, index) => {
 		bits[value] = 0;

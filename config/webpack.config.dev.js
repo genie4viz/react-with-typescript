@@ -35,6 +35,7 @@ module.exports = {
 								babelrc: false,
 								presets: ['@babel/preset-env', '@babel/typescript', '@babel/preset-react'],
 								plugins: [
+									'@babel/plugin-transform-runtime',
 									'@babel/plugin-syntax-dynamic-import',
 									'@babel/plugin-proposal-class-properties',
 									'@babel/plugin-proposal-object-rest-spread',
@@ -66,8 +67,8 @@ module.exports = {
 												preventFullImport: true
 											}
 										}
-									]
-									// 'react-hot-loader/babel'
+									],
+									'react-hot-loader/babel'
 								],
 								cacheDirectory: true,
 								cacheCompression: false,
@@ -140,7 +141,7 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			inject: true,
 			template: './static/index.html',
-			baseUrl: paths.public,
+			baseUrl: paths.baseUrl,
 			favicon: './static/favicon.ico'
 		}),
 		new webpack.DefinePlugin({
@@ -160,9 +161,8 @@ module.exports = {
 		compress: true,
 		contentBase: paths.src,
 		historyApiFallback: true,
-		host: '127.0.0.1',
+		host: 'localhost',
 		port: '8080',
-		open: 'firefox',
 		hot: true,
 		inline: true,
 		overlay: true,

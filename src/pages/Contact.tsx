@@ -1,16 +1,21 @@
-import React, { memo } from 'react';
+import React from 'react';
 import Helmet from 'react-helmet';
 
-const Contact = memo(() => {
+const Contact = () => {
 	return (
 		<>
-			<Helmet>
-				<title>Contact - React with Typescript and Webpack</title>
-				<meta name="description" content="Contact - React with Typescript and Webpack" />
-			</Helmet>
+			<Helmet
+				title={'Contact - React with Typescript and Webpack'}
+				meta={[
+					{
+						name: 'description',
+						content: 'Contact - React with Typescript and Webpack'
+					}
+				]}
+			/>
 			<h1>Contact Page</h1>
 		</>
 	);
-});
+};
 
 export default Contact;

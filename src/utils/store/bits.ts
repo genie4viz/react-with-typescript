@@ -1,4 +1,4 @@
-const calculateChangedBits = (prev: any, next: any) => {
+const calculateChangedBits = <S extends { [key: string]: any }>(prev: S, next: S) => {
 	let result = 0;
 
 	if (!prev || !next) {

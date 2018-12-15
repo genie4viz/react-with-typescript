@@ -6,6 +6,7 @@ module.exports = babelJest.createTransformer({
 	babelrc: false,
 	presets: ['@babel/preset-env', '@babel/typescript', '@babel/preset-react'],
 	plugins: [
+		'@babel/plugin-transform-runtime',
 		'@babel/plugin-syntax-dynamic-import',
 		'@babel/plugin-proposal-class-properties',
 		'@babel/plugin-proposal-object-rest-spread',

@@ -4,10 +4,15 @@ import Helmet from 'react-helmet';
 const About = () => {
 	return (
 		<>
-			<Helmet>
-				<title>About - React with Typescript and Webpack</title>
-				<meta name="description" content="About - React with Typescript and Webpack" />
-			</Helmet>
+			<Helmet
+				title={'About - React with Typescript and Webpack'}
+				meta={[
+					{
+						name: 'description',
+						content: 'About - React with Typescript and Webpack'
+					}
+				]}
+			/>
 			<h1>About Page</h1>
 		</>
 	);

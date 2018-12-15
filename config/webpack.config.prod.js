@@ -39,6 +39,7 @@ module.exports = {
 								babelrc: false,
 								presets: ['@babel/preset-env', '@babel/typescript', '@babel/preset-react'],
 								plugins: [
+									'@babel/plugin-transform-runtime',
 									'@babel/plugin-syntax-dynamic-import',
 									'@babel/plugin-proposal-class-properties',
 									'@babel/plugin-proposal-object-rest-spread',
@@ -213,7 +214,7 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			inject: true,
 			template: './static/index.html',
-			baseUrl: paths.public,
+			baseUrl: paths.baseUrl,
 			favicon: './static/favicon.ico',
 			minify: {
 				removeComments: true,
@@ -247,7 +248,7 @@ module.exports = {
 			clientsClaim: true,
 			exclude: [/\.map$/, /\.gz$/],
 			importWorkboxFrom: 'cdn',
-			navigateFallback: paths.public + '/index.html',
+			navigateFallback: paths.public + '/200.html',
 			navigateFallbackBlacklist: [new RegExp('^/_'), new RegExp('/[^/]+\\.[^/]+$')],
 			swDest: 'service-worker.js',
 			skipWaiting: true,

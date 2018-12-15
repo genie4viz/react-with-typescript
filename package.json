@@ -2,12 +2,17 @@
 	"name": "rtw",
 	"version": "0.0.1",
 	"description": "React with Typescript and Webpack",
-	"author": "https://sangau.me",
+	"keywords": [
+		"rtw",
+		"react",
+		"typescript",
+		"babel",
+		"webpack"
+	],
+	"homepage": "https://sangau.me",
 	"license": "MIT",
+	"author": "https://sangau.me",
 	"repository": "https://github.com/auvansang/rtw",
-	"engines": {
-		"node": ">=6"
-	},
 	"scripts": {
 		"analyze": "source-map-explorer dist/static/js/main.*",
 		"build": "webpack --env.NODE_ENV=production",
@@ -15,12 +20,12 @@
 		"test": "jest --watch"
 	},
 	"dependencies": {
-		"@material-ui/core": "^3.6.1",
+		"@babel/runtime": "^7.2.0",
+		"@material-ui/core": "^3.6.2",
 		"@material-ui/icons": "^3.0.1",
-		"@material-ui/lab": "^3.0.0-alpha.24",
-		"@material-ui/styles": "^3.0.0-alpha.2",
+		"@material-ui/lab": "^3.0.0-alpha.25",
+		"@material-ui/styles": "^3.0.0-alpha.3",
 		"@types/webpack-env": "^1.13.6",
-		"history": "^4.7.2",
 		"react": "next",
 		"react-dom": "next",
 		"react-helmet": "^5.2.0",
@@ -29,16 +34,16 @@
 		"whatwg-fetch": "^3.0.0"
 	},
 	"devDependencies": {
-		"@babel/core": "^7.2.0",
+		"@babel/core": "^7.2.2",
 		"@babel/plugin-proposal-class-properties": "^7.2.1",
 		"@babel/plugin-proposal-object-rest-spread": "^7.2.0",
 		"@babel/plugin-syntax-dynamic-import": "^7.2.0",
+		"@babel/plugin-transform-runtime": "^7.2.0",
 		"@babel/preset-env": "^7.2.0",
 		"@babel/preset-react": "^7.0.0",
 		"@babel/preset-typescript": "^7.1.0",
-		"@types/history": "^4.7.2",
 		"@types/jest": "^23.3.10",
-		"@types/react": "^16.7.13",
+		"@types/react": "^16.7.17",
 		"@types/react-dom": "^16.0.11",
 		"@types/react-helmet": "^5.0.7",
 		"@types/react-router-config": "^1.1.0",
@@ -52,18 +57,18 @@
 		"case-sensitive-paths-webpack-plugin": "^2.1.2",
 		"clean-webpack-plugin": "^1.0.0",
 		"compression-webpack-plugin": "^2.0.0",
-		"css-loader": "^2.0.0",
+		"css-loader": "^2.0.1",
 		"file-loader": "^2.0.0",
 		"html-webpack-plugin": "next",
 		"jest": "^23.6.0",
 		"mini-css-extract-plugin": "^0.5.0",
-		"node-sass": "^4.10.0",
+		"node-sass": "^4.11.0",
 		"optimize-css-assets-webpack-plugin": "^5.0.1",
 		"postcss-flexbugs-fixes": "^4.1.0",
 		"postcss-loader": "^3.0.0",
-		"postcss-preset-env": "^6.4.0",
+		"postcss-preset-env": "^6.5.0",
 		"postcss-safe-parser": "^4.0.1",
-		"react-hot-loader": "^4.3.12",
+		"react-hot-loader": "^4.6.0",
 		"react-test-renderer": "^16.6.3",
 		"sass-loader": "^7.1.0",
 		"source-map-explorer": "^1.6.0",
@@ -77,6 +82,10 @@
 		"webpack-dev-server": "^3.1.10",
 		"workbox-webpack-plugin": "^3.6.3"
 	},
+	"engines": {
+		"node": ">=6"
+	},
+	"private": true,
 	"browserslist": [
 		">0.2%",
 		"not dead",

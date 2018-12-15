@@ -1,10 +1,8 @@
 import React, { ComponentType, lazy } from 'react';
 import ErrorBoundary from './ErrorBoundary';
 
-const withLazy = <P extends Object, T extends ComponentType<any>>(
-	factory: () => Promise<{ default: T }>
-) => {
-	const WithLazy = (props: P) => {
+const withLazy = <T extends ComponentType<any>>(factory: () => Promise<{ default: T }>) => {
+	const WithLazy = (props: any) => {
 		const Component = lazy(factory);
 
 		return (

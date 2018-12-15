@@ -6,7 +6,7 @@ interface Reducers {
 	[key: string]: Reducer;
 }
 
-const createRootReducer = (reducers: Reducers): Reducer => {
+const createRootReducer = (reducers: Reducers) => {
 	const reducerKeys = Object.keys(reducers);
 	const fnReducers = {} as Reducers;
 
@@ -18,7 +18,7 @@ const createRootReducer = (reducers: Reducers): Reducer => {
 
 	const fnReducerKeys = Object.keys(fnReducers);
 
-	return (state = {} as any, action: any): Reducer => {
+	return <S extends { [key: string]: any }>(state = {} as S, action: any): S => {
 		let hasChanged = false;
 		const nextState = {} as any;
 

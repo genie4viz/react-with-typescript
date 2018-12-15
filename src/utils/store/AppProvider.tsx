@@ -2,17 +2,17 @@ import React, { useReducer, useMemo } from 'react';
 import { RootContext, AppContext } from './AppContext';
 
 type AppProviderProps = {
-	value: {
-		reducer: any;
-		state: undefined | Object;
-		bits: undefined | Object;
+	store: {
+		state: { [key: string]: any };
+		reducer: <S, A>(state: S, action: A) => S;
+		bits: { [key: string]: any };
 	};
 	children?: React.ReactNode;
 };
 
 const AppProvider = (props: AppProviderProps) => {
 	const {
-		value: { reducer, state, bits },
+		store: { state, reducer, bits },
 		children
 	} = props;
 

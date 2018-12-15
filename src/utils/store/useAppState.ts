@@ -1,22 +1,10 @@
 import { useContext, useMemo } from 'react';
 import { RootContext, AppContext } from './AppContext';
 
-interface Action {
-	(...args: any[]): any;
-}
-
-interface ActionCreator {
-	[key: string]: Action;
-}
-
-const useAppState = <
-	AppState extends { [key: string]: any },
-	State extends Object,
-	Actions extends ActionCreator
->(
-	selector: (appState: AppState) => State,
-	actionCreators: Actions
-): [State, Actions] => {
+const useAppState = <AS, S, A extends { [key: string]: any }>(
+	selector: (appState: AS) => S,
+	actionCreators: A
+): [S, A] => {
 	const [bits, dispatch] = useContext(RootContext);
 	const observedBits = Number(selector(bits));
 	const appState = useContext(AppContext, observedBits);
@@ -24,10 +12,10 @@ const useAppState = <
 
 	const actions = useMemo(
 		() => {
-			const retActions = {} as Actions;
+			const retActions = {} as A;
 
 			Object.keys(actionCreators).forEach(key => {
-				retActions[key] = (...args: any[]) => dispatch(actionCreators[key](...args));
+				retActions[key] = async (...args: any[]) => dispatch(await actionCreators[key](...args));
 
 				return retActions[key];
 			});
