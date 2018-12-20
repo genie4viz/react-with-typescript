@@ -21,9 +21,7 @@ module.exports = {
 		path: paths.dist,
 		filename: 'static/js/[name].[chunkhash:8].js',
 		chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
-		publicPath: paths.public,
-		devtoolModuleFilenameTemplate: info =>
-			path.relative(paths.src, info.absoluteResourcePath).replace(/\\/g, '/')
+		publicPath: paths.public
 	},
 	module: {
 		rules: [
@@ -77,7 +75,7 @@ module.exports = {
 								cacheCompression: true,
 								compact: false,
 								highlightCode: true,
-								sourceMap: true
+								sourceMap: false
 							}
 						}
 					},
@@ -89,8 +87,7 @@ module.exports = {
 								loader: 'css-loader',
 								options: {
 									importLoaders: 1,
-									minimize: true,
-									sourceMap: true
+									sourceMap: false
 								}
 							},
 							{
@@ -106,13 +103,13 @@ module.exports = {
 											stage: 3
 										})
 									],
-									sourceMap: true
+									sourceMap: false
 								}
 							},
 							{
 								loader: 'sass-loader',
 								options: {
-									sourceMap: true
+									sourceMap: false
 								}
 							}
 						]
@@ -174,7 +171,7 @@ module.exports = {
 				},
 				parallel: true,
 				cache: true,
-				sourceMap: true
+				sourceMap: false
 			}),
 			new OptimizeCssAssetsPlugin({
 				cssProcessorOptions: {
