@@ -2,7 +2,14 @@ import React from 'react';
 
 import LinkButton from 'components/button/LinkButton';
 
-import { AppBar, Toolbar, Button, Grid, InputBase } from '@material-ui/core';
+import {
+  AppBar,
+  Toolbar,
+  Button,
+  Grid,
+  InputBase,
+  IconButton
+} from '@material-ui/core';
 import { Theme } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/styles';
 import { SearchOutlined } from '@material-ui/icons';
@@ -30,18 +37,16 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   search: {
     display: 'flex',
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
     alignItems: 'center'
   },
   input: {
-    flex: 1
+    flex: 1,
+    marginLeft: theme.spacing.unit * 2
   },
   searchIcon: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: theme.spacing.unit * 2,
-    marginLeft: theme.spacing.unit * 2
+    borderRadius: 0,
+    padding: `10px ${theme.spacing.unit * 2}px`
   }
 }));
 
@@ -79,10 +84,10 @@ const Header = () => {
             </LinkButton>
             <span className={classes.grow} />
             <div className={classes.search}>
-              <span className={classes.searchIcon}>
-                <SearchOutlined />
-              </span>
               <InputBase placeholder="Search…" className={classes.input} />
+              <IconButton className={classes.searchIcon} aria-label="Search">
+                <SearchOutlined />
+              </IconButton>
             </div>
             {Links.map(item => (
               <LinkButton
